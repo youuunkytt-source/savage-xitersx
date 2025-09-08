@@ -88,7 +88,7 @@
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
     <ExternalIncludePath>C:\Users\iroxyyyy\Desktop\SAVAGE XITERS\examples\SDK\Include;C:\Users\iroxyyyy\Desktop\SAVAGE XITERS\examples\SDK\Lib\x64;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>C:\Users\iroxyyyy\Desktop\SAVAGE XITERS\examples\SDK\Lib\x64;C:\Users\iroxyyyy\Desktop\SAVAGE XITERS\examples\SDK\Include;$(LibraryPath)</LibraryPath>
-    <TargetName>IROXY PANEL</TargetName>
+    <TargetName>IROXYPANEL</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
