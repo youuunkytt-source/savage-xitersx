@@ -1612,7 +1612,7 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 
 
-                        if (AIMBOTHEAD = ImGui::Checkbox("Aimbot HEAD ", &var::AIMBOTHEAD1, "Apply in Every Match", &key1))
+                        if (AIMBOTHEAD = ImGui::Checkbox("Aimbot X ", &var::AIMBOTHEAD1, "Apply in Every Match", &key1))
                         {
 
                             if (var::AIMBOTHEAD1)
