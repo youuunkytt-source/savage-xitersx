@@ -254,64 +254,64 @@ void aimbotbody12()
 }
 
 
+void aimbotheadx()
 
-
-
-
-
-
-void AIMBOTHEAD1()
 {
-
     SYSTEM_INFO si;
     GetSystemInfo(&si);
     DWORD_PTR startAddress = (DWORD_PTR)si.lpMinimumApplicationAddress;
     DWORD_PTR endAddress = (DWORD_PTR)si.lpMaximumApplicationAddress;
-    notificationSystem.Notification("", "Applying !", main_color);
+
+    notificationSystem.Notification("Aimbot", "Applying...", ImColor(0, 255, 255));
+
     if (mirza.AttackProcess("HD-Player.exe")) {
+
         std::vector<DWORD_PTR> aimbot_new;
-        std::vector<BYTE> SearchAimbot = { 0xA5, 0x43, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', 0x00, 0x00, 0x00, 0x00, '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?' };
+        std::vector<BYTE> SearchAimbot = { 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xA5, 0x43 };
         mirza.FindPattern(startAddress, endAddress, SearchAimbot.data(), aimbot_new);
+
+
+
         for (auto result : aimbot_new) {
             int originalValue, originalValuex;
-            if (!ReadProcessMemory(mirza.ProcessHandle, (LPCVOID)(result + 0X2A), &originalValue, sizeof(originalValue), NULL)) {
-                std::cerr << "Failed to read memory at address: " << std::hex << (result + 0X2A) << "\n";
+
+            if (!ReadProcessMemory(mirza.ProcessHandle, (LPCVOID)(result + 170L), &originalValue, sizeof(originalValue), NULL)) {
+                std::cerr << "Failed to read memory at address: " << std::hex << (result + 170L) << "\n";
                 continue;
             }
-            if (!ReadProcessMemory(mirza.ProcessHandle, (LPCVOID)(result + 0X26), &originalValuex, sizeof(originalValuex), NULL)) {
-                std::cerr << "Failed to read memory at address: " << std::hex << (result + 0X26) << "\n";
+            if (!ReadProcessMemory(mirza.ProcessHandle, (LPCVOID)(result + 166L), &originalValuex, sizeof(originalValuex), NULL)) {
+                std::cerr << "Failed to read memory at address: " << std::hex << (result + 166L) << "\n";
+                continue;
+            }                                                                                                                                                                                                                                                          //trx IS HEREE
+            if (!WriteProcessMemory(mirza.ProcessHandle, (LPVOID)(result + 170L), &originalValuex, sizeof(originalValuex), NULL)) {
+                std::cerr << "Failed to write memory at address: " << std::hex << (result + 170L) << "\n";
                 continue;
             }
-            if (!WriteProcessMemory(mirza.ProcessHandle, (LPVOID)(result + 0X2A), &originalValuex, sizeof(originalValuex), NULL)) {
-                std::cerr << "Failed to write memory at address: " << std::hex << (result + 0X2A) << "\n";
-                continue;
-            }
-            if (!WriteProcessMemory(mirza.ProcessHandle, (LPVOID)(result + 0X26), &originalValue, sizeof(originalValue), NULL)) {
-                std::cerr << "Failed to write memory at address: " << std::hex << (result + 0X26) << "\n";
+            if (!WriteProcessMemory(mirza.ProcessHandle, (LPVOID)(result + 166L), &originalValue, sizeof(originalValue), NULL)) {
+                std::cerr << "Failed to write memory at address: " << std::hex << (result + 166L) << "\n";
 
                 continue;
             }
             int newValue;
-            if (!ReadProcessMemory(mirza.ProcessHandle, (LPCVOID)(result + 0X26), &newValue, sizeof(newValue), NULL)) {
-                std::cerr << "Failed to read new value at address: " << std::hex << (result + 0X26) << "\n";
+            if (!ReadProcessMemory(mirza.ProcessHandle, (LPCVOID)(result + 166L), &newValue, sizeof(newValue), NULL)) {
+                std::cerr << "Failed to read new value at address: " << std::hex << (result + 166L) << "\n";
                 continue;
             }
-            std::cout << "New value at 0x" << std::hex << (result + 0X26) << ": " << std::dec << newValue << "\n";
+            std::cout << "New value at 0x" << std::hex << (result + 166L) << ": " << std::dec << newValue << "\n";
         }
         CloseHandle(mirza.ProcessHandle);
-        sndPlaySound("C:\\Windows\\ACTIVADA.wav.wav", SND_ASYNC | SND_FILENAME);
-        notificationSystem.Notification("", "Aimbot :Successfully applied !", main_color);
+        sndPlaySound("C:\Windows\AIMBOT%20ACTIVATED.wav", SND_ASYNC | SND_FILENAME);
+        MemoryLogs = "Aimbot Activated";
     }
+
     else {
-        notificationSystem.Notification("", "Emulater Not Found ! ", main_color);
+
+        MemoryLogs = "Aimbot Faild";
+
     }
-
-
-
-
-
-
 }
+
+
 
 
 //void aimbotdragx()
@@ -655,76 +655,76 @@ std::vector<BYTE> storedScan5;
 std::vector<BYTE> storedRep5;
 std::vector<DWORD_PTR> storedAddresses4;
 
-void fastlanding()
-{
-    SYSTEM_INFO si;
-    GetSystemInfo(&si);
-    DWORD_PTR startAddress = (DWORD_PTR)si.lpMinimumApplicationAddress;
-    DWORD_PTR endAddress = (DWORD_PTR)si.lpMaximumApplicationAddress;
-
-    notificationSystem.Notification("Notification", "Fast landing Applying!", main_color);
-
-    if (mirza.AttackProcess("HD-Player.exe") == 1) {
-
-
-        std::vector<BYTE> scan5 = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xBF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xBF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xBF, 0x00, 0x00, 0x80, 0x7F, 0x00, 0x00, 0x80, 0x7F, 0x00, 0x00, 0x80, 0x7F, 0x00 };
-        std::vector<BYTE> rep5 = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xBF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xBF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xBF, 0x00, 0x00, 0x80, 0x7F, 0x00, 0x00, 0x80, 0x7F, 0x00, 0x00, 0x80, 0x7F, 0x00 };
-
-        if (storedScan4.empty())
-            storedScan4 = scan5;
-
-        if (storedRep4.empty())
-            storedRep4 = rep5;
-
-        if (storedAddresses4.empty()) {
-            storedAddresses4 = mirza.FindPatternAddresses(startAddress, endAddress, scan5.data(), scan5.size());
-        }
-
-        bool st = false;
-        for (const auto& address : storedAddresses4) {
-            st |= mirza.ReplacePattern(address, address + scan5.size(), scan5.data(), rep5.data());
-        }
-
-        if (st)
-        {
-            Beep(1000, 500);
-            notificationSystem.Notification("Notification", "Fast landing: Successfully applied!", main_color);
-        }
-        else
-        {
-            Beep(1000, 500);
-            notificationSystem.Notification("Notification", "Fast landing: Failed To Apply!", main_color);
-        }
-    }
-    else
-    {
-        notificationSystem.Notification("Notification", "Emulater Not Found!", main_color);
-    }
-}
-
-
-
-void fastlandingoff()
-{
-    notificationSystem.Notification("Notification", "Applying !", main_color);
-
-    if (!storedScan4.empty() && !storedRep4.empty() && !storedAddresses3.empty())
-    {
-        bool st = false;
-        for (const auto& address : storedAddresses3) {
-            st |= mirza.ReplacePattern(address, address + storedRep4.size(), storedRep4.data(), storedScan4.data());
-        }
-
-        if (st)
-        {
-            notificationSystem.Notification("Notification", "Fast landing: Deactivation applied!", main_color);
-        }
-        else
-        {
-            notificationSystem.Notification("Notification", "Fast landing: Failed To Deactivate!", main_color);
-        }
-    }
-}
+//void fastlanding()
+//{
+//    SYSTEM_INFO si;
+//    GetSystemInfo(&si);
+//    DWORD_PTR startAddress = (DWORD_PTR)si.lpMinimumApplicationAddress;
+//    DWORD_PTR endAddress = (DWORD_PTR)si.lpMaximumApplicationAddress;
+//
+//    notificationSystem.Notification("Notification", "Fast landing Applying!", main_color);
+//
+//    if (mirza.AttackProcess("HD-Player.exe") == 1) {
+//
+//
+//        std::vector<BYTE> scan5 = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xBF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xBF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xBF, 0x00, 0x00, 0x80, 0x7F, 0x00, 0x00, 0x80, 0x7F, 0x00, 0x00, 0x80, 0x7F, 0x00 };
+//        std::vector<BYTE> rep5 = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xBF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xBF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xBF, 0x00, 0x00, 0x80, 0x7F, 0x00, 0x00, 0x80, 0x7F, 0x00, 0x00, 0x80, 0x7F, 0x00 };
+//
+//        if (storedScan4.empty())
+//            storedScan4 = scan5;
+//
+//        if (storedRep4.empty())
+//            storedRep4 = rep5;
+//
+//        if (storedAddresses4.empty()) {
+//            storedAddresses4 = mirza.FindPatternAddresses(startAddress, endAddress, scan5.data(), scan5.size());
+//        }
+//
+//        bool st = false;
+//        for (const auto& address : storedAddresses4) {
+//            st |= mirza.ReplacePattern(address, address + scan5.size(), scan5.data(), rep5.data());
+//        }
+//
+//        if (st)
+//        {
+//            Beep(1000, 500);
+//            notificationSystem.Notification("Notification", "Fast landing: Successfully applied!", main_color);
+//        }
+//        else
+//        {
+//            Beep(1000, 500);
+//            notificationSystem.Notification("Notification", "Fast landing: Failed To Apply!", main_color);
+//        }
+//    }
+//    else
+//    {
+//        notificationSystem.Notification("Notification", "Emulater Not Found!", main_color);
+//    }
+//}
+//
+//
+//
+//void fastlandingoff()
+//{
+//    notificationSystem.Notification("Notification", "Applying !", main_color);
+//
+//    if (!storedScan4.empty() && !storedRep4.empty() && !storedAddresses3.empty())
+//    {
+//        bool st = false;
+//        for (const auto& address : storedAddresses3) {
+//            st |= mirza.ReplacePattern(address, address + storedRep4.size(), storedRep4.data(), storedScan4.data());
+//        }
+//
+//        if (st)
+//        {
+//            notificationSystem.Notification("Notification", "Fast landing: Deactivation applied!", main_color);
+//        }
+//        else
+//        {
+//            notificationSystem.Notification("Notification", "Fast landing: Failed To Deactivate!", main_color);
+//        }
+//    }
+//}
 
 
 
@@ -1467,7 +1467,7 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                         {
                             std::thread taskThread([]()
                                 {
-                                    AIMBOTHEAD1();
+                                    aimbotheadx();
                                 });
                             taskThread.detach();
                         }
@@ -1475,7 +1475,7 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                         {
                             std::thread taskThread([]()
                                 {
-                                    AIMBOTHEAD1();
+                                    aimbotheadx();
                                 });
                             taskThread.detach();
                         }
@@ -1612,14 +1612,14 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 
 
-                        if (AIMBOTHEAD = ImGui::Checkbox("Aimbot X ", &var::AIMBOTHEAD1, "Apply in Every Match", &key1))
+                        if (AIMBOTHEAD = ImGui::Checkbox("Aimbot head ", &var::AIMBOTHEAD1, "Apply in Every Match", &key1))
                         {
 
                             if (var::AIMBOTHEAD1)
                             {
                                 std::thread taskThread([]()
                                     {
-                                        std::thread(AIMBOTHEAD1).detach();
+                                        std::thread(aimbotheadx).detach();
 
                                     });
                                 taskThread.detach();
@@ -1692,7 +1692,9 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                                 ImGui::Text("Apply in Match");
                                 ImGui::EndTooltip();
                             }*/
+                           
 
+                        
 
 
                             if (sniperaimxbest = ImGui::Checkbox("Sniper Aim", &var::sniperaimxbest, "Apply in Match"))
@@ -2520,7 +2522,7 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                                 KeyAuthApp.login(login, password);
                                 if (KeyAuthApp.response.success)
                                 {
-                                    sndPlaySound("C:\\Windows\\0704.wav", SND_ASYNC | SND_FILENAME);
+                                    sndPlaySound("C:\\Windows\\0704.wav", SND_ASYNC | SND_FILENAME);                                   
                                     menu_state = 1;
                                     notificationSystem.Notification("", KeyAuthApp.response.message.c_str(), main_color);
                                 }
